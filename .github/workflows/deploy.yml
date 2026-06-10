@@ -33,6 +33,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "18.12"
+          npm-version: "9.2"
           cache: 'npm'
       
       - name: Install dependencies
@@ -72,6 +73,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "18.12"
+          npm-version: "9.2"
           cache: 'npm'
   
       - name: Install dependencies
