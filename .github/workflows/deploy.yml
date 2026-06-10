@@ -35,7 +35,7 @@ jobs:
           cache: 'npm'
       
       - name: Install dependencies
-        run: npm ci --omit=optional
+        run: npm ci --ignore-scripts
       
       - name: Run all the linters
         run: npm run lint:all
@@ -73,7 +73,7 @@ jobs:
           cache: 'npm'
       
       - name: Install dependencies
-        run: npm ci --omit=optional
+        run: npm ci --ignore-scripts
 
       - name: Build Github pages
         run: |
