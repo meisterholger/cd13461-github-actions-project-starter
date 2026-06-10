@@ -54,14 +54,6 @@ jobs:
     # Runs after test job
     needs: test
     # permissions for pages
-    permissions:
-      pages: write
-      id-token: write
-    
-    concurrency:
-      group: "pages"
-      cancel-in-progress: false
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -101,6 +93,13 @@ jobs:
     # Runs after test and build job
     needs: [test, build]
 
+    permissions:
+      pages: write
+      id-token: write
+    
+    concurrency:
+      group: "pages"
+      cancel-in-progress: false
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
