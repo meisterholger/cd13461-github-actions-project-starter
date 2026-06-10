@@ -115,10 +115,21 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
 
+      - name: Install GitHub CLI
+        run: sudo apt-get install gh -y
+
       - name: Create Issue with status of the deployment
         run: |
+          STATUS="succeeded"
+          if [ "${{ job.status }}" != "success" ]; then
+            STATUS="failed"
+          fi
+ 
+          DATE=$(date +'%Y-%m-%d')
+          URL="${{ steps.deployment.outputs.page_url }}"
+ 
           gh issue create \
-            --title "$(date +'%Y-%m-%d') - Deployment: ${{ job.status }}" \
-            --body "URL: ${{ steps.deployment.outputs.page_url }}"
+            --title "$DATE - Deployment: $STATUS" \
+            --body "URL: $URL"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
