@@ -97,6 +97,7 @@ jobs:
       pages: write
       id-token: write
       issues: write
+      contents: read
     
     concurrency:
       group: "pages"
@@ -117,9 +118,6 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-
-      - name: Install GitHub CLI
-        run: sudo apt-get install gh -y
 
       - name: Create Issue with status of the deployment
         run: |
